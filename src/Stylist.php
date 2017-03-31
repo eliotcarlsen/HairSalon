@@ -83,6 +83,20 @@
                 return false;
             }
         }
+
+        function delete()
+        {
+            $executed = $GLOBALS['DB']->exec("DELETE FROM stylists WHERE id = {$this->getId()};");
+            if (!$executed) {
+                return false;
+            }
+            $executed = $GLOBALS['DB']->exec("DELETE FROM clients WHERE stylist_id = {$this->getId()};");
+            if (!$executed) {
+                return false;
+            } else {
+                return true;
+            }
+        }
     }
 
 
