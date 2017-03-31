@@ -87,12 +87,30 @@
           $stylist_id2 = $test_stylist2->getId();
 
           $test_client = new Client("Sam", $stylist_id);
+          $test_client->save();
           $test_client2 = new Client("Bobby", $stylist_id2);
+          $test_client2->save();
           Client::deleteAll();
           $result = Client::getAll();
           $this->assertEquals([], $result);
         }
 
+        function test_find()
+        {
+          $test_stylist = new Stylist("Sally");
+          $test_stylist->save();
+          $stylist_id = $test_stylist->getId();
+          $test_stylist2 = new Stylist("June");
+          $test_stylist2->save();
+          $stylist_id2 = $test_stylist2->getId();
+
+          $test_client = new Client("Sam", $stylist_id);
+          $test_client->save();
+          $test_client2 = new Client("Bobby", $stylist_id2);
+          $test_client2->save();
+          $result = Client::find($test_client2->getId());
+          $this->assertEquals($test_client2, $result);
+        }
 
     }
 

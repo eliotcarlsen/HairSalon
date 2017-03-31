@@ -56,6 +56,22 @@
                 return false;
             }
         }
+
+        static function find($stylist_id)
+        {
+          $found_stylist = null;
+          $returned_stylist = $GLOBALS['DB']->prepare("SELECT * FROM stylists WHERE id = :id");
+          $returned_stylist->bindParam(':id', $stylist_id, PDO::PARAM_STR);
+          $returned_stylist->execute();
+          foreach($returned_stylist as $stylist) {
+              $name = $stylist['name'];
+              $id = $stylist['id'];
+              if ($id == $stylist_id) {
+                  $found_stylist = new Stylist($name, $id);
+              }
+          }
+          return $found_stylist;
+        }
     }
 
 

@@ -62,6 +62,23 @@
                 return false;
             }
         }
+
+        static function find($client_id)
+        {
+            $found_client = null;
+            $returned_client = $GLOBALS['DB']->prepare("SELECT * FROM clients WHERE id = :id");
+            $returned_client->bindParam(':id', $client_id, PDO::PARAM_STR);
+            $returned_client->execute();
+            foreach($returned_client as $client) {
+                $name = $client['name'];
+                $stylist_id = $client['stylist_id'];
+                $id = $client['id'];
+                if ($id == $client_id) {
+                    $found_client = new Client($name, $stylist_id, $id);
+                }
+            }
+            return $found_client;
+        }
     }
 
 

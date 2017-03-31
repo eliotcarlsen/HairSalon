@@ -65,6 +65,16 @@
         $this->assertEquals([], $result);
       }
 
+      function test_find()
+      {
+        $test_stylist = new Stylist("Sally");
+        $test_stylist->save();
+        $test_stylist2 = new Stylist("June");
+        $test_stylist2->save();
+        $result = Stylist::find($test_stylist->getId());
+        $this->assertEquals($test_stylist, $result);
+      }
+
 
     }
 ?>
