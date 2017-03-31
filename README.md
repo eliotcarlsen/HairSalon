@@ -22,8 +22,10 @@ _Program can delete a specific client for owner_
 _Program can delete a specific stylist for owner_
 
 _MySQL Commands:_
-_Program can add stylists to a MySQL database_
-_Program can add clients to a MySQL database_
+_CREATE DATABASE hair_salon_
+_USE hair_salon_
+_CREATE TABLE stylists (name VARCHAR (255), id serial PRIMARY KEY)_
+_CREATE TABLE clients (name VARCHAR (255), stylist_id INT, id serial PRIMARY KEY)_
 
 
 ## Setup/Installation Requirements
