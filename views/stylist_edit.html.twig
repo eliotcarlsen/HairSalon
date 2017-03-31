@@ -14,6 +14,11 @@
 
       <button type="submit">Update</button>
     </form>
+
+    <form action="/stylist/{{ stylist.getId }}" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <button type="submit">Delete this stylist</button>
+    </form>
     <p><a href='/'>Home</a></p>
   </body>
 </html>
