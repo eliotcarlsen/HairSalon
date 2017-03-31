@@ -79,6 +79,25 @@
             }
             return $found_client;
         }
+
+        static function findAllClients($stylist_id)
+        {
+            $clients = array();
+            $returned_clients = $GLOBALS['DB']->prepare("SELECT * FROM clients WHERE stylist_id = :id");
+            $returned_clients->bindParam(':id', $stylist_id, PDO::PARAM_STR);
+            $returned_clients->execute();
+            foreach ($returned_clients as $client) {
+                $name = $client['name'];
+                $stylistId = $client['stylist_id'];
+                $id = $client['id'];
+                if ($stylistId == $stylist_id) {
+                    $found_client = new Client($name, $stylistId, $id);
+                    array_push($clients, $found_client);
+                }
+            }
+            return $clients;
+
+        }
     }
 
 
