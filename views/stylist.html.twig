@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hair Salon</title>
+  </head>
+  <body>
+    <div class="container">
+      <form action="/addclient" method="get">
+        <label for="clientname">Enter a New Client</label>
+        <input type="text" name="clientname">
+        <input type="hidden" name="stylist_id" value="{{ stylist.id }}">
+        <button type="submit" name="button">Enter</button>
+      </form>
+      <h1>Hair Stylist {{ stylist.name }}</h1>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hair Salon</title>
+  </head>
+  <body>
+    <div class="container">
+      <form action="/addstylist" method="post">
+        <label for="stylistname">Enter a New Stylist</label>
+        <input type="text" name="stylistname">
+        <button type="submit" name="button">Enter</button>
+      </form>
+      {% if stylists is not empty %}
+        {% for stylist in stylists %}
+          <li><a href="/stylists/{{ stylist.id }}">{{ stylist.name }}</a></li>
+        {% endfor %}
+      {% endif %}
+    </div>
+  </body>
+</html>
