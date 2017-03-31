@@ -38,6 +38,30 @@
                 return false;
             }
         }
+
+        static function getAll()
+        {
+            $returned_clients = $GLOBALS['DB']->query("SELECT * FROM clients;");
+            $clients = array();
+            foreach ($returned_clients as $client) {
+                $name = $client['name'];
+                $stylist_id = $client['stylist_id'];
+                $id = $client['id'];
+                $new_client = new Client($name, $stylist_id, $id);
+                array_push($clients, $new_client);
+            }
+            return $clients;
+        }
+
+        static function deleteAll()
+        {
+            $executed = $GLOBALS['DB']->exec("DELETE FROM clients;");
+            if ($executed) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 
 

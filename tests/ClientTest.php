@@ -11,6 +11,13 @@
     require_once "src/Client.php";
 
     class ClientTest extends PHPUnit_Framework_TestCase {
+
+        protected function tearDown()
+        {
+        Stylist::deleteAll();
+        Client::deleteAll();
+        }
+
         function test_save()
         {
             $test_stylist = new Stylist("Sam");
@@ -54,6 +61,38 @@
             $result = $test_client->getStylistId();
             $this->assertEquals($stylist_id, $result);
         }
+        function test_getAll()
+        {
+            $test_stylist = new Stylist("Sally");
+            $test_stylist->save();
+            $stylist_id = $test_stylist->getId();
+            $test_stylist2 = new Stylist("June");
+            $test_stylist2->save();
+            $stylist_id2 = $test_stylist2->getId();
+
+            $test_client = new Client("Sam", $stylist_id);
+            $test_client->save();
+            $test_client2 = new Client("Bobby", $stylist_id2);
+            $test_client2->save();
+            $result = Client::getAll();
+            $this->assertEquals([$test_client, $test_client2], $result);
+        }
+        function test_deleteAll()
+        {
+          $test_stylist = new Stylist("Sally");
+          $test_stylist->save();
+          $stylist_id = $test_stylist->getId();
+          $test_stylist2 = new Stylist("June");
+          $test_stylist2->save();
+          $stylist_id2 = $test_stylist2->getId();
+
+          $test_client = new Client("Sam", $stylist_id);
+          $test_client2 = new Client("Bobby", $stylist_id2);
+          Client::deleteAll();
+          $result = Client::getAll();
+          $this->assertEquals([], $result);
+        }
+
 
     }
 
