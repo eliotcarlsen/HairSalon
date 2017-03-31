@@ -6,8 +6,20 @@
     <title>Client</title>
   </head>
   <body>
-    <h3>Client info for: {{ client.getName }}</h3>
-    <li>{{ id }}</li>
+    <h3>Update client info for: {{ client.getName }}</h3>
+    <form action="/client/{{ client.getId }}" method="post">
+      <input type="hidden" name="_method" value="patch">
+
+      <label for="name">Rename your client:</label>
+      <input id="name" type="text" name="name">
+
+      <button type="submit">Update</button>
+    </form>
+
+    <form action="/client/{{ client.getId }}" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <button type="submit">Delete this client</button>
+    </form>
     <p><a href='/'>Home</a></p>
   </body>
 </html>

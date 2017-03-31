@@ -70,5 +70,19 @@
       return $app['twig']->render('client.html.twig', array ('client'=>$client, 'id'=>$id));
   });
 
+  $app->patch("/client/{id}", function($id) use($app) {
+      $name = $_POST['name'];
+      $client = Client::find($id);
+      $client->update($name);
+      return $app['twig']->render('client.html.twig', array('client'=>$client));
+  });
+
+  $app->delete("/client/{id}", function($id) use($app) {
+      $client = Client::find($id);
+      $client->delete();
+      $stylists = Stylist::getAll();
+      return $app['twig']->render('index.html.twig', array('stylists'=>$stylists));
+  });
+
   return $app;
 ?>

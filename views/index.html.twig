@@ -8,7 +8,7 @@
     <div class="container">
       <form action="/addstylist" method="post">
         <label for="stylistname">Enter a New Stylist</label>
-        <input type="text" name="stylistname">
+        <input type="text" name="stylistname" required>
         <button type="submit" name="button">Enter</button>
       </form>
       {% if stylists is not empty %}
