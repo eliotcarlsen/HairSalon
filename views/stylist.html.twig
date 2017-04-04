@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="css/styles.css" type="text/css" rel="stylesheet">
     <meta charset="utf-8">
     <title>Hair Salon</title>
   </head>
   <body>
     <div class="container">
+      <div class="jumbotron">
+        <h1>Hair Salon</h1>
+      </div>
       <form action="/addclient" method="get">
         <label for="clientname">Enter a New Client</label>
         <input type="text" name="clientname">
         <input type="hidden" name="stylist_id" value="{{ stylist.id }}">
         <button type="submit" name="button">Enter</button>
       </form>
-      <h1>Hair Stylist {{ stylist.name }}</h1>
-
+      <h2>Hair Stylist {{ stylist.name }}</h2>
       {% if clients is not empty %}
         <h3>These are your clients...</h3>
         {% for client in clients %}

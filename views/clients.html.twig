@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="css/styles.css" type="text/css" rel="stylesheet">
     <meta charset="utf-8">
     <title>Hair Salon</title>
   </head>
   <body>
     <div class="container">
-      <form action="/addclient" method="get">
-        <label for="clientname">Enter a New Client</label>
-        <input type="text" name="clientname">
-        <input type="hidden" name="stylist_id" value="{{ stylist.id }}">
-        <button type="submit" name="button">Enter</button>
-      </form>
-      <h1>Hair Stylist {{ stylist.name }}</h1>
-      {% if clients is not empty %}
-        {% for client in clients %}
-          <li><a href="/client/{{ client.id }}">{{ client.name }}</a></li>
-        {% endfor %}
-      {% endif %}
-      <p><a href='/'>Home</a></p>
+      <div class="jumbotron">
+        <h1>Hair Salon</h1>
+      </div>
+        <form action="/addclient" method="get">
+          <label for="clientname">Enter a New Client</label>
+          <input type="text" name="clientname">
+          <input type="hidden" name="stylist_id" value="{{ stylist.id }}">
+          <button type="submit" name="button">Enter</button>
+        </form>
+        <h1>Hair Stylist {{ stylist.name }}</h1>
+        {% if clients is not empty %}
+          {% for client in clients %}
+            <li><a href="/client/{{ client.id }}">{{ client.name }}</a></li>
+          {% endfor %}
+        {% endif %}
+        <p><a href='/'>Home</a></p>
     </div>
   </body>
 </html>
